@@ -1,0 +1,46 @@
+.footer {
+  background: #333;
+  color: #fff;
+  padding: 4rem 10% 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.column h3, .column h4 {
+  margin-bottom: 1rem;
+}
+
+.column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.column ul li {
+  margin-bottom: 0.5rem;
+}
+
+.column a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.column a:hover {
+  color: #fff;
+}
+
+.social {
+  display: flex;
+  gap: 1rem;
+}
+
+.bottom {
+  margin-top: 2rem;
+  text-align: center;
+  border-top: 1px solid #555;
+  padding-top: 1rem;
+}

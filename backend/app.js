@@ -15,6 +15,19 @@ app.use(cors());
 // Swagger setup
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+// Serve Swagger spec as JSON
+app.get('/swagger.json', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(swaggerSpec);
+});
+
+// Serve Swagger spec as YAML
+app.get('/swagger.yaml', (req, res) => {
+    res.setHeader('Content-Type', 'application/x-yaml');
+    const swaggerDocument = yaml.stringify(swaggerSpec, 4);
+    res.send(swaggerDocument);
+});
+
 // Sync database
 db.sequelize
   .sync({ force: false })

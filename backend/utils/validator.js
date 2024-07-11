@@ -49,8 +49,25 @@ const loginValidator = [
   body("password").notEmpty().withMessage("Password is required"),
 ];
 
+const studentEnrollmentValidator = [
+  body("student_id").isInt().withMessage("Student ID must be an integer"),
+  body("course_id").isInt().withMessage("Course ID must be an integer"),
+];
+
+// module.exports = {
+//   registerLecturerValidator,
+//   registerStudentValidator,
+//   loginValidator,
+//   courseValidator,
+//   lectureValidator,
+//   assetValidator,
+//   validate,
+// };
+
+
 module.exports = {
   validate,
+  studentEnrollmentValidator,
   registerLecturerValidator,
   registerStudentValidator,
   loginValidator,
