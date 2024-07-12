@@ -106,8 +106,8 @@ const ProfilePage = () => {
               {enrollments.map((enrollment) => (
                 <ListItem key={enrollment.id}>
                   <ListItemText
-                    primary={enrollment.Course.title}
-                    secondary={enrollment.Course.code}
+                    primary={enrollment.course.title}
+                    secondary={enrollment.course.code}
                   />
                 </ListItem>
               ))}
