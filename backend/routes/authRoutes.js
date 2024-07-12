@@ -118,13 +118,27 @@ router.post(
  *                 type: string
  *               password:
  *                 type: string
- *             example:
- *               email: john.doe@example.com
- *               password: secret123
  *     responses:
  *       200:
- *         description: User logged in successfully
- *       400:
+ *         description: Login successful
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *                 id:
+ *                   type: integer
+ *                 first_name:
+ *                   type: string
+ *                 last_name:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 matricule:
+ *                   type: string
+ *       401:
  *         description: Invalid credentials
  *       404:
  *         description: User not found

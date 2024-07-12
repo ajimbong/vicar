@@ -8,6 +8,7 @@ const generateToken = (user) => {
 };
 
 const verifyToken = (token) => {
+  console.log(dotenv.jwtSecret)
   return jwt.verify(token, dotenv.jwtSecret);
 };
 

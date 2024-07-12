@@ -1,6 +1,7 @@
 // import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Hero.module.css";
+import img from "./hero.jpeg"
 
 const Hero = () => {
   return (
@@ -18,9 +19,10 @@ const Hero = () => {
       <div className={styles.imageContainer}>
         {/* Replace with actual image */}
         <div className={styles.placeholderImage}>
-          3D Model Placeholder
+          {/* 3D Model Placeholder
           <br />
-          (600x400px)
+          (600x400px) */}
+                  <img src={img} alt="hero image" />
         </div>
       </div>
     </section>

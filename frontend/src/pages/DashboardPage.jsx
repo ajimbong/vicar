@@ -1,12 +1,17 @@
 // import React from "react";
-import styles from "./DashboardPage.module.css";
+import { Routes, Route } from "react-router-dom";
+import DashboardLayout from "../components/dashboard/DashboardLayout";
+import Courses from "../components/dashboard/Courses";
 
 const DashboardPage = () => {
   return (
-    <div className={styles.dashboard}>
-      <h1>Welcome to your Dashboard</h1>
-      <p>Your dashboard content will appear here soon.</p>
-    </div>
+    <DashboardLayout>
+      <Routes>
+        <Route path="courses" element={<Courses />} />
+        <Route path="my-courses" element={<h2>My Courses (Coming Soon)</h2>} />
+        <Route path="profile" element={<h2>Profile (Coming Soon)</h2>} />
+      </Routes>
+    </DashboardLayout>
   );
 };
 

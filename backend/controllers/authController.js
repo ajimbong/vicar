@@ -2,15 +2,16 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const db = require("../models");
 const dotenv = require("../config/dotenv");
+const {generateToken} = require("../utils/token")
 
 const Lecturer = db.Lecturer;
 const Student = db.Student;
 
-const generateToken = (user) => {
-  return jwt.sign({ id: user.id, email: user.email }, dotenv.jwtSecret, {
-    expiresIn: "1h",
-  });
-};
+// const generateToken = (user) => {
+//   return jwt.sign({ id: user.id, email: user.email }, dotenv.jwtSecret, {
+//     expiresIn: "1h",
+//   });
+// };
 
 exports.registerLecturer = async (req, res) => {
   try {
@@ -49,25 +50,39 @@ exports.registerStudent = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    const user =
-      (await Lecturer.findOne({ where: { email } })) ||
-      (await Student.findOne({ where: { email } }));
+    let user = await db.Lecturer.findOne({ where: { email } });
 
     if (!user) {
-      return res.status(404).json({ error: "User not found" });
+      user = await db.Student.findOne({ where: { email } });
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ error: "Invalid credentials" });
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid credentials" });
     }
 
     const token = generateToken(user);
-    res.status(200).json({ token });
+
+    const userData = {
+      token,
+      id: user.id,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      email: user.email,
+    };
+
+    if (user.matricule) {
+      userData.matricule = user.matricule;
+    }
+
+    res.status(200).json(userData);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    next(error);
   }
 };
