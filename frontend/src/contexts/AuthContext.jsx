@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem("token");
       const userId = localStorage.getItem("userId");
       if (token && userId) {
-        console.log("fetching user oo")
+        // console.log("fetching user oo")
         try {
           const response = await axios.get(
             `http://localhost:8000/api/students/${userId}`,
@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
             }
           );
           setUser({ ...response.data, token });
-          console.log("fetch completed oo")
+          // console.log("fetch completed oo")
           // console.log(response.data)
         } catch (error) {
           console.error("Error fetching student data:", error);
@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }) => {
         token,
       };
       setUser(userData);
-      console.log(user);
+      // console.log(user);
       localStorage.setItem("token", token);
       localStorage.setItem("userId", id);
     } catch (error) {

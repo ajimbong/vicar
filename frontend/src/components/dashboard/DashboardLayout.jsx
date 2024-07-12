@@ -6,7 +6,6 @@ import styles from "./DashboardLayout.module.css";
 
 const DashboardLayout = () => {
   const { user, logout } = useContext(AuthContext);
-  // console.log("Dash", user)
 
   return (
     <div className={styles.dashboard}>
