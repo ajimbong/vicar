@@ -5,6 +5,7 @@ const db = require("./models"); // Import the db object
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./config/swagger"); // Import the Swagger configuration
 const errorHandler = require("./middleware/errorHandler");
+const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,6 +15,9 @@ app.use(cors());
 
 // Swagger setup
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+// Serve static files
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Serve Swagger spec as JSON
 app.get('/swagger.json', (req, res) => {

@@ -72,3 +72,23 @@ exports.deleteLecture = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getAssetsByLectureId = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const lecture = await db.Lecture.findByPk(id, {
+      include: [
+        {
+          model: db.Asset,
+          as: "assets",
+        },
+      ],
+    });
+    if (!lecture) {
+      return res.status(404).json({ message: "Lecture not found" });
+    }
+    res.status(200).json(lecture.assets);
+  } catch (error) {
+    next(error);
+  }
+};

@@ -157,7 +157,26 @@ router.put('/:id', authMiddleware, lectureController.updateLecture);
  */
 router.delete('/:id', authMiddleware, lectureController.deleteLecture);
 
-module.exports = router;
+/**
+ * @swagger
+ * /lectures/{id}/assets:
+ *   get:
+ *     summary: Get all assets for a lecture
+ *     tags: [Lectures]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: Lecture ID
+ *     responses:
+ *       200:
+ *         description: List of assets
+ *       404:
+ *         description: Lecture not found
+ */
+router.get('/:id/assets', lectureController.getAssetsByLectureId);
 
 
 module.exports = router;

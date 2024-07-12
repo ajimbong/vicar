@@ -36,3 +36,38 @@ exports.deleteEnrollment = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getStudentCourses = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const student = await db.Student.findByPk(id, {
+      include: [
+        {
+          model: db.Course,
+          through: db.StudentEnrollment,
+          as: "courses",
+        },
+      ],
+    });
+// const [results, metadata] = await db.sequelize.query(
+//   `
+//   SELECT c.* 
+//   FROM Courses c
+//   JOIN StudentEnrollments se ON c.id = se.course_id
+//   WHERE se.student_id = :student_id
+// `,
+//   {
+//     replacements: { student_id: id },
+//     type: db.sequelize.QueryTypes.SELECT,
+//   }
+// );
+// console.log(results);
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+
+    res.status(200).json(student.courses);
+  } catch (error) {
+    next(error);
+  }
+};

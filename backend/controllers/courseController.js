@@ -63,3 +63,51 @@ exports.deleteCourse = async (req, res, next) => {
   }
 };
 
+exports.getLecturesByCourseId = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const course = await db.Course.findByPk(id, {
+      include: [
+        {
+          model: db.Lecture,
+          as: "lectures",
+          include: [
+            {
+              model: db.Asset,
+              as: "assets", // Make sure this alias matches your association definition
+            },
+          ],
+        },
+      ],
+    });
+
+    if (!course) {
+      return res.status(404).json({ message: "Course not found" });
+    }
+
+    res.status(200).json(course.lectures);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// exports.getLecturesByCourseId = async (req, res, next) => {
+//   try {
+//     const { id } = req.params;
+//     const course = await db.Course.findByPk(id, {
+//       include: [
+//         {
+//           model: db.Lecture,
+//           as: "lectures",
+//         },
+//       ],
+//     });
+//     if (!course) {
+//       return res.status(404).json({ message: "Course not found" });
+//     }
+//     res.status(200).json(course.lectures);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+

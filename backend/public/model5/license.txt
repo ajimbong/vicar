@@ -1,0 +1,11 @@
+Model Information:
+* title:	Taxidermy West African Crocodile
+* source:	https://sketchfab.com/3d-models/taxidermy-west-african-crocodile-603b942837334f8cb09ce12e2d4233c0
+* author:	Indy Sarlet (https://sketchfab.com/indy.sarlet)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Taxidermy West African Crocodile" (https://sketchfab.com/3d-models/taxidermy-west-african-crocodile-603b942837334f8cb09ce12e2d4233c0) by Indy Sarlet (https://sketchfab.com/indy.sarlet) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -141,4 +141,26 @@ router.put('/:id', authMiddleware, courseController.updateCourse);
  */
 router.delete('/:id', authMiddleware, courseController.deleteCourse);
 
+/**
+ * @swagger
+ * /courses/{id}/lectures:
+ *   get:
+ *     summary: Get all lectures for a course
+ *     tags: [Courses]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: Course ID
+ *     responses:
+ *       200:
+ *         description: List of lectures
+ *       404:
+ *         description: Course not found
+ */
+router.get('/:id/lectures', courseController.getLecturesByCourseId);
+
+
 module.exports = router;

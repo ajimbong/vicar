@@ -125,5 +125,25 @@ router.post('/enrollment', authMiddleware, validate(studentEnrollmentValidator),
  */
 router.delete('/enrollment', authMiddleware, validate(studentEnrollmentValidator), studentEnrollmentController.deleteEnrollment);
 
+/**
+ * @swagger
+ * /students/{id}/courses:
+ *   get:
+ *     summary: Get all courses a student is enrolled in
+ *     tags: [Students]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: Student ID
+ *     responses:
+ *       200:
+ *         description: List of courses
+ *       404:
+ *         description: Student not found
+ */
+router.get('/:id/courses', authMiddleware, studentEnrollmentController.getStudentCourses);
 
 module.exports = router;
